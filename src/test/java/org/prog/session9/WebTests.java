@@ -54,10 +54,25 @@ public class WebTests {
         Thread.sleep(250);
         WebElement suggestion = visibleList.findElement(By.xpath("//span[text()='selenium tutorial']"));
         Assert.assertTrue(suggestion.isDisplayed(), "suggestion list must contain 'selenium tutorial'");
+        
     }
 
-    @AfterSuite
-    public void afterSuite() {
-        driver.quit();
-    }
+        @AfterSuite
+        public void afterSuite() {
+            driver.quit();
+        }
+
+        @Test
+        public void myWebTest2() {
+
+            driver.get("https://allo.ua/ua/products/mobile/apple-iphone-17-pro-max-256gb-silver-aluminum.html");
+
+            WebElement title = driver.findElement(
+                    By.xpath("//title")
+            );
+
+            Assert.assertNotNull(title.getAttribute("textContent"));
+
+            System.out.println(title.getAttribute("textContent"));
+        }
 }

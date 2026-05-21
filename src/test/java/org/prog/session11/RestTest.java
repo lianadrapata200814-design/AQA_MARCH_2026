@@ -55,6 +55,23 @@ public class RestTest {
                         .stream()
                         .anyMatch(r ->
                                 r.getGender().equalsIgnoreCase("female")));
+        for (PersonDto person : resultsDto.getResults()) {
+
+            Assert.assertNotNull(person.getLocation());
+
+            Assert.assertNotNull(person.getLocation().getStreet());
+
+            Assert.assertNotNull(person.getLocation().getStreet().getNumber());
+
+            Assert.assertNotNull(person.getLocation().getStreet().getName());
+
+            Assert.assertTrue(
+                    person.getLocation()
+                            .getPostcode()
+                            .toString()
+                            .matches("\\d+")
+            );
+        }
 
         RequestSpecification requestSpecification2 = RestAssured.given();
         requestSpecification2.body(resultsDto);
@@ -75,6 +92,10 @@ public class RestTest {
                 .then()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
-                .body("results.gender[0]", Matchers.equalTo("female"));
+                .body("results.gender[0]", Matchers.equalTo("female"))
+                 .body("results[0].location.street.number",
+                       Matchers.notNullValue())
+                .body("results[0].location.street.name",
+                        Matchers.notNullValue());
     }
 }

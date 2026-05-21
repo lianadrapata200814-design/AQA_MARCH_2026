@@ -43,8 +43,15 @@ public class Main {
         Car car2 = new Car("AA0120AA");
         service.paintCar("Blue", car2);
         car2.goTo("Odessa");
-    }
 
+        Phone samsung = PhoneShop.buyPhone("Samsung", "white");
+        if (samsung != null) {
+        samsung.ring();
+    }
+    Phone iphone = PhoneShop.buyPhone("iPhone", "white");
+
+    Phone blackPhone = PhoneShop.buyPhone("Samsung", "black");
+    }
     public static void paintCar(Car car, String color) {
         car.color = color;
     }

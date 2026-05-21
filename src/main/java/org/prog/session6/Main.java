@@ -7,15 +7,22 @@ package org.prog.session6;
 public class Main {
 
     public static void main(String[] args) {
+            try {
         Car aliceCar = new Car();
         Car bobCar = new Car();
         aliceCar.color = "red";
+        aliceCar.brand = "BMW";
         bobCar.color = "red";
+        bobCar.brand = "BMW";
         System.out.println(aliceCar.equals(bobCar));
         System.out.println(aliceCar.hashCode());
         System.out.println(bobCar.hashCode());
         System.out.println(aliceCar);
         System.out.println(bobCar);
+            Car brokenCar = new Car();
+            brokenCar.color = "white";
+
+            System.out.println(brokenCar.hashCode());
         Object o = new Object();
         //0  - 0     - 0
         //1  - 1     - 1
@@ -35,4 +42,8 @@ public class Main {
         //15 - 1111  - F
         //16 - 10000 - 10
     }
+     catch (RuntimeException e) {
+        System.out.println("oops, phone has no brand or color!");
+    }
+}
 }

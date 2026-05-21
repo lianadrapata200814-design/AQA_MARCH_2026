@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Car {
 
     public String color;
+    public String brand;
     public String plateNumber;
 
     @Override
@@ -16,8 +17,12 @@ public class Car {
 //            } else {
 //                return color.equals(car.color);
 //            }
+            if (brand == null || color == null) {
+                throw new RuntimeException("oops, phone has no brand or color!");
+            }
+
             return Objects.equals(car.color, this.color) &&
-                    Objects.equals(car.plateNumber, this.plateNumber);
+                    Objects.equals(car.brand, this.brand);
         }
         return false;
     }

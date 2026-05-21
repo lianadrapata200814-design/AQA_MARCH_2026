@@ -1,9 +1,6 @@
 package org.prog.session10;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
@@ -144,12 +141,37 @@ public class WebTests {
 //            headings.add(googleLink.getText());
 //        }
 //        Assert.assertTrue(headings.contains(textWeWantToSee));
-
-
     }
 
-    @AfterSuite
-    public void afterSuite() {
-        driver.quit();
+    @Test
+    public void myWebTest6() throws InterruptedException {
+
+        driver.manage().window().maximize();
+
+        driver.get("https://allo.ua/");
+
+        WebElement searchInput =
+                driver.findElement(By.id("search-form__input"));
+
+        searchInput.sendKeys("iphone");
+        searchInput.sendKeys(Keys.ENTER);
+
+        Thread.sleep(3000);
+
+        WebElement firstProduct =
+                driver.findElement(By.cssSelector("a.product-card__title"));
+
+        String title = firstProduct.getText();
+
+        Assert.assertNotNull(title);
+        Assert.assertFalse(title.isEmpty());
+
+        System.out.println(title);
     }
+
+
+@AfterSuite
+public void afterSuite() {
+    driver.quit();
+}
 }
